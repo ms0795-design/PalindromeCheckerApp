@@ -36,4 +36,4 @@ public class PalindromeCheckApp {
 
         scanner.close();
     }
-}
+} //test
