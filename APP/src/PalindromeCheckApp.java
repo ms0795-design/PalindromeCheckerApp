@@ -1,39 +1,56 @@
-import java.util.Scanner;
+import java.util.Queue;
+import java.util.Stack;
+import java.util.LinkedList;
 
 public class PalindromeCheckApp {
-
-    // Method to check if a string is a palindrome
-    public static boolean isPalindrome(String text) {
-        // Remove non-alphanumeric characters and convert to lowercase
-        String cleaned = text.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-
-        // Reverse the string
-        String reversed = new StringBuilder(cleaned).reverse().toString();
-
-        return cleaned.equals(reversed);
-    }
-
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        String input = "racecar";
 
-        System.out.println("=== Palindrome Checker App ===");
+        // Using Queue (FIFO - First In First Out)
+        Queue<Character> queue = new LinkedList<>();
+        for (char c : input.toCharArray()) {
+            queue.add(c);
+        }
 
-        while (true) {
-            System.out.print("\nEnter a word or sentence (or type 'exit' to quit): ");
-            String input = scanner.nextLine();
+        // Using Stack (LIFO - Last In First Out)
+        Stack<Character> stack = new Stack<>();
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
 
-            if (input.equalsIgnoreCase("exit")) {
-                System.out.println("Goodbye!");
+        System.out.println("Input: " + input);
+        System.out.println("\nQueue (FIFO) Output:");
+        while (!queue.isEmpty()) {
+            System.out.print(queue.poll());
+        }
+
+        System.out.println("\nStack (LIFO) Output:");
+        while (!stack.isEmpty()) {
+            System.out.print(stack.pop());
+        }
+
+        // Compare outputs for palindrome validation
+        System.out.println("\n\nPalindrome Check:");
+        Queue<Character> queueCheck = new LinkedList<>();
+        Stack<Character> stackCheck = new Stack<>();
+
+        for (char c : input.toCharArray()) {
+            queueCheck.add(c);
+            stackCheck.push(c);
+        }
+
+        boolean isPalindrome = true;
+        while (!queueCheck.isEmpty() && !stackCheck.isEmpty()) {
+            if (queueCheck.poll() != stackCheck.pop()) {
+                isPalindrome = false;
                 break;
-            }
-
-            if (isPalindrome(input)) {
-                System.out.println("✅ It is a palindrome!");
-            } else {
-                System.out.println("❌ It is NOT a palindrome.");
             }
         }
 
-        scanner.close();
+        if (isPalindrome) {
+            System.out.println(input + " is a palindrome (Queue and Stack outputs match in reverse)");
+        } else {
+            System.out.println(input + " is not a palindrome");
+        }
     }
-} //test
+}
