@@ -1,38 +1,40 @@
-import java.util.Queue;
 import java.util.Scanner;
-import java.util.Stack;
-import java.util.LinkedList;
 
-public class PalindromeCheckApp {
-    public static boolean isPalindrome(String str, int start, int end) {
+class PalindromeChecker {
 
-        if (start >= end) {
-            return true;
+    public boolean checkPalindrome(String str) {
+
+        int start = 0;
+        int end = str.length() - 1;
+
+        while (start < end) {
+
+            if (str.charAt(start) != str.charAt(end))
+                return false;
+
+            start++;
+            end--;
         }
 
-        if (str.charAt(start) != str.charAt(end)) {
-            return false;
-        }
-
-        return isPalindrome(str, start + 1, end - 1);
+        return true;
     }
+}
+
+public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter a string: ");
+        System.out.print("Enter string: ");
         String input = sc.nextLine();
 
-        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+        PalindromeChecker checker = new PalindromeChecker();
 
-        boolean result = isPalindrome(normalized, 0, normalized.length() - 1);
-
-        if (result) {
-            System.out.println("The given string \"" + input + "\" is a Palindrome (ignoring case and spaces).");
-        } else {
-            System.out.println("The given string \"" + input + "\" is NOT a Palindrome (ignoring case and spaces).");
-        }
+        if (checker.checkPalindrome(input))
+            System.out.println("Palindrome");
+        else
+            System.out.println("Not Palindrome");
 
         sc.close();
     }
