@@ -61,7 +61,7 @@ public class PalindroneCheckerApp {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter a string: ");
+        System.out.print("Enter string: ");
         String input = sc.nextLine();
 
         PalindromeChecker stackChecker = new PalindromeChecker(new StackStrategy());
