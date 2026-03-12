@@ -54,6 +54,9 @@ class PalindromeChecker {
     public PalindromeChecker(PalindromeStrategy strategy) {
         this.strategy = strategy;
     }
+}
+
+public class PalindromeCheckerApp {
 
     public void setStrategy(PalindromeStrategy strategy) {
         this.strategy = strategy;
@@ -71,7 +74,7 @@ public class PalindroneCheckerApp {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter a string: ");
+        System.out.print("Enter string: ");
         String input = sc.nextLine();
 
         System.out.println("Choose algorithm: 1 = Stack, 2 = Deque");
